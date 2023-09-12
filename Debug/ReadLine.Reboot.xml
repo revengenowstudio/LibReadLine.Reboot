@@ -1,0 +1,638 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReadLine.Reboot</name>
+    </assembly>
+    <members>
+        <member name="T:ReadLineReboot.Abstractions.BellType">
+            <summary>
+            Specifies the bell type
+            </summary>
+        </member>
+        <member name="F:ReadLineReboot.Abstractions.BellType.None">
+            <summary>
+            No bell enabled
+            </summary>
+        </member>
+        <member name="F:ReadLineReboot.Abstractions.BellType.Audible">
+            <summary>
+            Audible bell
+            </summary>
+        </member>
+        <member name="F:ReadLineReboot.Abstractions.BellType.Visible">
+            <summary>
+            Visible bell. Your terminal should support the VT sequences with visible bell support.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.ConsoleWrapper.PasswordMode">
+            <summary>
+            Whether we're in the password mode
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.ConsoleWrapper.PasswordMaskChar">
+            <summary>
+            The password mask character
+            </summary>
+        </member>
+        <member name="T:ReadLineReboot.Abstractions.IConsole">
+            <summary>
+            Console interface
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.IConsole.CursorLeft">
+            <summary>
+            Cursor left position
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.IConsole.CursorTop">
+            <summary>
+            Cursor top position
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.IConsole.BufferWidth">
+            <summary>
+            Buffer width
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.IConsole.PasswordMode">
+            <summary>
+            Password mode
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.Abstractions.IConsole.PasswordMaskChar">
+            <summary>
+            Password mask character
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.Abstractions.IConsole.SetCursorPosition(System.Int32,System.Int32)">
+            <summary>
+            Sets the cursor position
+            </summary>
+            <param name="left">Left position</param>
+            <param name="top">Top position</param>
+        </member>
+        <member name="M:ReadLineReboot.Abstractions.IConsole.Write(System.String)">
+            <summary>
+            Writes text to the console
+            </summary>
+            <param name="value">Text to be printed</param>
+        </member>
+        <member name="T:ReadLineReboot.IAutoCompleteHandler">
+            <summary>
+            The auto completion handler interface. You must make a base class that implements this interface in order to enable auto completion.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.IAutoCompleteHandler.Separators">
+            <summary>
+            Separator characters. If any of these are encountered, the auto-completion will trigger
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.IAutoCompleteHandler.GetSuggestions(System.String,System.Int32)">
+            <summary>
+            Gets the suggestions based on current text and current index
+            </summary>
+            <param name="text">The current text entered in the console</param>
+            <param name="index">The index of the terminal cursor where the auto-completion is triggered</param>
+            <returns></returns>
+        </member>
+        <member name="T:ReadLineReboot.KeyHandler">
+            <summary>
+            The keyhandler class
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.KeyHandler.Text">
+            <summary>
+            The current text
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.KeyHandler.CurrentLine">
+            <summary>
+            The current line
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.KeyHandler.KillBuffer">
+            <summary>
+            The current console clipboard content for use with CTRL + Y (Yank)
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorLeft">
+            <summary>
+            Moves the cursor to the left once
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorLeft(System.Int32)">
+            <summary>
+            Moves the cursor to the left n times
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorRight">
+            <summary>
+            Moves the cursor to the right once
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorRight(System.Int32)">
+            <summary>
+            Moves the cursor to the right n times
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorHome">
+            <summary>
+            Moves the cursor to the beginning of the line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorEnd">
+            <summary>
+            Moves the cursor to the end of the line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorWordLeft">
+            <summary>
+            Moves the cursor to the left one word
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MoveCursorWordRight">
+            <summary>
+            Moves the cursor to the right one word
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.WriteNewString(System.String)">
+            <summary>
+            Writes the string to the console, clearing the line beforehand
+            </summary>
+            <param name="str">The text to be printed</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.WriteString(System.String)">
+            <summary>
+            Writes the string to the console without clearing the line
+            </summary>
+            <param name="str">The text to be printed</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.WriteChar">
+            <summary>
+            Writes a single character to the console
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.WriteChar(System.Char,System.Int32)">
+            <summary>
+            Writes a specific character to the console
+            </summary>
+            <param name="c">A character to be printed</param>
+            <param name="repeat">How many times to repeat the character?</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.InsertComment">
+            <summary>
+            Inserts the comment to the current command
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.InsertHomeDirectory">
+            <summary>
+            Inserts the home directory by replacing the tilde
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Backspace">
+            <summary>
+            Erases the last letter. Simulates the backspace key.
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Backspace(System.Int32)">
+            <summary>
+            Erases the last letter. Simulates the backspace key.
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Delete">
+            <summary>
+            Deletes the letter in the current position
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.DeleteChar">
+            <summary>
+            Deletes the character in the current position. Invoked by <see cref="M:ReadLineReboot.KeyHandler.Delete"/> and <see cref="M:ReadLineReboot.KeyHandler.Backspace"/>
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.DeleteChar(System.Int32)">
+            <summary>
+            Deletes the character in the current position. Invoked by <see cref="M:ReadLineReboot.KeyHandler.Delete"/> and <see cref="M:ReadLineReboot.KeyHandler.Backspace"/>
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.BackspaceOrDelete">
+            <summary>
+            Backspace or delete
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLine">
+            <summary>
+            Clears the entire line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineToLeft">
+            <summary>
+            Clears the line to the left
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineToLeft(System.Boolean)">
+            <summary>
+            Clears the line to the left
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineToRight">
+            <summary>
+            Clears the line to the right
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineToRight(System.Boolean)">
+            <summary>
+            Clears the line to the right
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineUntilSpace">
+            <summary>
+            Clears all characters until the space is spotted
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineUntilSpaceOrSlash">
+            <summary>
+            Clears all characters until the space or slash (or backslash if running on Windows) is spotted
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearHorizontalSpace">
+            <summary>
+            Clears all horizontal space
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearLineAfterSpace">
+            <summary>
+            Clears all characters after the space is spotted
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.TransposeChars">
+            <summary>
+            Transposes the two characters in the current position
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.TransposeWords">
+            <summary>
+            Transposes the two words in the current position
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.DoAutoComplete">
+            <summary>
+            Initialize auto-complete initially
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.DoReverseAutoComplete">
+            <summary>
+            Does the reverse auto complete
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.StartAutoComplete">
+            <summary>
+            Starts the auto-completion, showing the first suggestion
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.NextAutoComplete">
+            <summary>
+            Goes to the next suggestion, or to the first suggestion if we reached the last suggestion
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.PreviousAutoComplete">
+            <summary>
+            Goes to the previous suggestion, or to the last suggestion if we reached the first suggestion
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.InsertCompletions">
+            <summary>
+            Inserts available completions
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ListPossibleCompletions">
+            <summary>
+            Lists possible completions
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ResetAutoComplete">
+            <summary>
+            Resets the auto-completion
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.PrevHistory">
+            <summary>
+            Shows the previous history
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.NextHistory">
+            <summary>
+            Shows the next history
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.AddLastArgument">
+            <summary>
+            Adds last argument to the current input
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.FirstHistory">
+            <summary>
+            Gets the first history
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.GoBackToCurrentLine">
+            <summary>
+            Goes back to the current line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.LowercaseWord">
+            <summary>
+            Makes the word lowercase
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.UppercaseWord">
+            <summary>
+            Makes the word UPPERCASE
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.UppercaseCharMoveToEndOfWord">
+            <summary>
+            Makes the character UPPERCASE and move to the end of the word
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.LowercaseCharMoveToEndOfWord">
+            <summary>
+            Makes the character lowercase and move to the end of the word
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Yank">
+            <summary>
+            Pastes the content of console clipboard (kill buffer)
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.CopyBackwardWord">
+            <summary>
+            Copies the word before the cursor and stores it to the kill buffer
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.CopyForwardWord">
+            <summary>
+            Copies the word under the cursor and stores it to the kill buffer
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Undo">
+            <summary>
+            Undos the last edit done to the current line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.UndoAll">
+            <summary>
+            Undos all the edits done to the current line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.SetArgument(System.Int32)">
+            <summary>
+            Sets the argument
+            </summary>
+            <param name="arg">Argument digit to add</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.MinusArgumentOrWrite">
+            <summary>
+            Add a minus to the argument number or write the minuses if an argument is already specified
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.StartKeyboardMacro">
+            <summary>
+            Starts the keyboard macro
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.EndKeyboardMacro">
+            <summary>
+            Stops recording the keyboard macro
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.CallLastKeyboardMacro">
+            <summary>
+            Calls the last keyboard macro
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.UpdateCurrentLine">
+            <summary>
+            Updates the current line variable
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.UpdatePrompt(System.String,System.Boolean)">
+            <summary>
+            Updates the prompt
+            </summary>
+            <param name="newPrompt">Prompt to be updated</param>
+            <param name="rewriteCurrentLine">Whether to rewrite current line</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ClearScreenAndRewrite">
+            <summary>
+            Clears the screen and rewrites the current line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.RewriteCurrentLine">
+            <summary>
+            Rewrites the current line
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.AppendMeta">
+            <summary>
+            Appends Meta (ALT) character
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.ExtendedFunctionMode">
+            <summary>
+            Enters the extended function mode
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.SetMark">
+            <summary>
+            Sets mark position
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.SuppressAction">
+            <summary>
+            No operation.
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.#ctor(ReadLineReboot.Abstractions.IConsole,System.Collections.Generic.List{System.String},ReadLineReboot.IAutoCompleteHandler)">
+            <summary>
+            Initializes the new instance of the key handler class. Please note that you need to call <see cref="M:ReadLineReboot.KeyBindings.InitializeBindings"/> directly after this.
+            </summary>
+            <param name="console">Console instance</param>
+            <param name="history">History of written inputs</param>
+            <param name="autoCompleteHandler">Auto completion handler</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Handle(System.ConsoleKeyInfo)">
+            <summary>
+            Handles the pressed key
+            </summary>
+            <param name="keyInfo">Key information</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyHandler.Handle(System.String,System.Boolean)">
+            <summary>
+            Handles the pressed key
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.KeyTools.CorrectKeyChar(System.ConsoleKeyInfo,System.String@,System.ConsoleModifiers@)">
+            <summary>
+            Corrects the key enumerator on some systems
+            </summary>
+            <param name="keyInfo">Console key information usually fetched from keyboard</param>
+            <param name="initialKey">The key name</param>
+            <param name="initialModifiers">The modifiers pressed at the time of check</param>
+        </member>
+        <member name="M:ReadLineReboot.KeyTools.BuildKeyInput(System.ConsoleKeyInfo)">
+            <summary>
+            Builds the key input string
+            </summary>
+            <returns>The key (for ex. B), or the pressed modifier and the key (for ex. ControlB)</returns>
+        </member>
+        <member name="T:ReadLineReboot.ReadLine">
+            <summary>
+            The initial read line module
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.HistoryEnabled">
+            <summary>
+            Whether the history is enabled. Currently false.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.AutoCompletionEnabled">
+            <summary>
+            Whether the auto completion is enabled. Currently true.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.ClipboardEnabled">
+            <summary>
+            Whether the clipboard (kill buffer) is enabled. Currently true.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.UndoEnabled">
+            <summary>
+            Whether the undo feature is enabled. Currently true.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.PrewriteDefaultValue">
+            <summary>
+            Whether the default value should be pre-written or not. Currently false.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.Interruptible">
+            <summary>
+            Whether the input is interruptible. Currently false.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.InterruptionResponsiveness">
+            <summary>
+            If <see cref="P:ReadLineReboot.ReadLine.Interruptible"/> is enabled, sets how responsive the interruption listener while waiting for keypress.
+            <para>If zero, this means instant, but causes 100% CPU usage.</para>
+            <para>If more than zero, this means that the listener will sleep for assigned number of milliseconds before detecting the next keys.</para>
+            <para>Use this carefully, because it can cause missed keys depending on the application.</para>
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.CtrlCEnabled">
+            <summary>
+            Whether the CTRL + C to EOL feature is enabled. Currently false. If false, exits program upon pressing CTRL + C.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.ReadRanToCompletion">
+            <summary>
+            Whether the last <see cref="M:ReadLineReboot.ReadLine.Read(System.String,System.String,System.Boolean)"/> or <see cref="M:ReadLineReboot.ReadLine.ReadPassword(System.String,System.Char,System.Boolean)"/> request ran to completion.
+            If the request is either cancelled or interrupted, this is false.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.AutoCompletionHandler">
+            <summary>
+            The auto completion handler. You need to make a class that implements <see cref="T:ReadLineReboot.IAutoCompleteHandler"/>
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.WritePrompt">
+            <summary>
+            The prompt writing handler.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.KeyHandler">
+            <summary>
+            The key handler.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.BellStyle">
+            <summary>
+            The bell style.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.HistorySize">
+            <summary>
+            Specifies the history size. If set to 0, all entries are removed and nothing will be added to the history.
+            If set to a value less than 0, the history size is unlimited.
+            </summary>
+        </member>
+        <member name="P:ReadLineReboot.ReadLine.NumberOfCharsToRead">
+            <summary>
+            Number of characters to read. If set to -1, ReadLine will read all characters as long as ENTER is pressed.
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.AddHistory(System.String[])">
+            <summary>
+            Adds a text or an array of texts to the history
+            </summary>
+            <param name="texts">The strings to add to the history</param>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.GetHistory">
+            <summary>
+            Gets the current history
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.ClearHistory">
+            <summary>
+            Clears the history
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.SetHistory(System.Collections.Generic.List{System.String})">
+            <summary>
+            Sets the history
+            </summary>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.AddCustomBinding(System.ConsoleKeyInfo,System.Action)">
+            <summary>
+            Adds your own custom binding. If a custom binding already exists, updates the custom binding.
+            </summary>
+            <param name="key">Console key to press</param>
+            <param name="action">Action to be done when key is pressed</param>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.ChangeCustomBinding(System.ConsoleKeyInfo,System.Action)">
+            <summary>
+            Changes your own custom binding
+            </summary>
+            <param name="key">Console key to press</param>
+            <param name="action">Action to be done when key is pressed</param>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.RemoveCustomBinding(System.ConsoleKeyInfo)">
+            <summary>
+            Removes your own custom binding
+            </summary>
+            <param name="key">Console key to press</param>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.Read(System.String,System.String,System.Boolean)">
+            <summary>
+            Writes the prompt and reads the input
+            </summary>
+            <param name="prompt">The prompt to write</param>
+            <param name="defaultText">The default text to write if nothing is written</param>
+            <param name="force">Force read the input (may cause instability)</param>
+            <returns>The written text if anything is input from the user, or the default text if nothing if printed</returns>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.ReadPassword(System.String,System.Char,System.Boolean)">
+            <summary>
+            Writes the prompt and reads the input while masking the written input
+            </summary>
+            <param name="prompt">The prompt to write</param>
+            <param name="mask">Character to use to mask password</param>
+            <param name="force">Force read the input (may cause instability)</param>
+            <returns>The written text</returns>
+        </member>
+        <member name="M:ReadLineReboot.ReadLine.InterruptRead">
+            <summary>
+            Interrupts reading from the console
+            </summary>
+        </member>
+    </members>
+</doc>
